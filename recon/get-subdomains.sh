@@ -12,7 +12,7 @@ domain="$1"
 # Remove the "https://" prefix if it's present
 domain="${domain#https://}"
 
-output_folder="$2/$domain"
+output_folder="$2"
 output_file="$output_folder/$domain.txt"
 
 # Create the directory if it doesn't exist already
@@ -24,12 +24,10 @@ mkdir $output_folder
 amass enum -passive -d $domain --config ../../bugbounty-private/config/amass.cfg | anew $output_file
 chaos -d $domain| anew $output_file.txt
 
-# Execute the command and save the output to the specified file
-$command > "$output_file"
 
 # Check the exit status of the command
 if [ $? -eq 0 ]; then
-  echo "Command completed successfully. Output saved to $output_file"
+  echo "Output saved to $output_file"
 else
   echo "Command failed. Check the error message for details."
 fi
