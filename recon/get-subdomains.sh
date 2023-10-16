@@ -21,8 +21,9 @@ mkdir $output_folder
 
 
 # Command to run with the given domain and output file
+chaos -d $domain| anew $output_file
+
 amass enum -passive -d $domain --config ../../bugbounty-private/config/amass.cfg | anew $output_file
-chaos -d $domain| anew $output_file.txt
 
 
 # Check the exit status of the command
